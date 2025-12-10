@@ -1,49 +1,219 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables for landing / default theme */
+:root {
+  --color-primary: #7D0A0A; /* Harvard Crimson */
+  --color-secondary: #F5F5F7;
+  --color-accent: #101820;
+  --color-highlight: #C4A484;
+  --radius-card: 14px;
+  --radius-btn: 8px;
+  --shadow-soft: 0 8px 30px rgba(16,24,40,0.06);
+  --shadow-strong: 0 16px 48px rgba(16,24,40,0.10);
+  --grid-step: 8px;
+}
+
+/* Student theme */
+.theme-student {
+  --color-primary: #0055FF;
+  --color-secondary: #EAF1FF;
+  --color-accent: #112233;
+  --color-highlight: #1DBF73;
+}
+
+/* Company theme */
+.theme-company {
+  --color-primary: #0B132B;
+  --color-secondary: #1C2541;
+  --color-accent: #3A506B;
+  --color-highlight: #5BC0BE;
+}
+
+/* Global base */
 html, body, #root {
   height: 100%;
+  font-family: Inter, Manrope, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, var(--color-secondary) 0%, #ffffff 100%);
+  color: #0f1724;
 }
 
-body {
-  @apply bg-gradient-to-br from-slate-50 to-slate-100 text-slate-900 font-sans;
+/* 8px rhythm helpers */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+/* Glass / Neumorphism card */
+.card-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(245,245,247,0.7));
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(16,24,40,0.04);
+  padding: 1.25rem;
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms;
+  will-change: transform, box-shadow;
+}
+.card-glass:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-strong);
 }
 
-/* Modern button utility classes */
-.btn-primary {
-  @apply px-5 py-2.5 rounded-lg font-semibold bg-gradient-to-r text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200;
+/* Premium button */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: var(--radius-btn);
+  border: none;
+  font-weight: 600;
+  transition: transform 180ms ease, opacity 160ms ease, box-shadow 180ms ease;
+  box-shadow: 0 8px 24px rgba(16,24,40,0.08);
 }
-
-.btn-secondary {
-  @apply px-5 py-2.5 rounded-lg font-semibold border border-slate-300 text-slate-700 hover:bg-slate-50 transition-all duration-200;
+.btn-premium:hover {
+  transform: scale(1.02);
+  opacity: 0.98;
 }
-
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(16,24,40,0.08);
+  color: var(--color-accent);
+  padding: 10px 16px;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  transition: background 160ms, transform 160ms;
+}
 .btn-ghost {
-  @apply px-5 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-slate-200 transition-all duration-200;
+  background: transparent;
+  border: none;
+  color: var(--color-accent);
+  padding: 8px;
 }
 
-/* Card hover effect */
-.card-hover {
-  @apply transition-all duration-300 hover:shadow-card-hover hover:scale-105;
+/* Inputs */
+.input-field {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(16,24,40,0.06);
+  background: linear-gradient(180deg, #fff, rgba(255,255,255,0.95));
+  transition: box-shadow 180ms, border-color 180ms;
+  outline: none;
+}
+.input-field:focus {
+  box-shadow: 0 6px 24px rgba(16,24,40,0.06), 0 0 0 4px rgba(196,164,132,0.08);
+  border-color: var(--color-primary);
 }
 
-/* Theme accents */
-.theme-student .accent { @apply text-student-500 }
-.theme-student .bg-accent { @apply bg-gradient-to-r from-student-500 to-student-600 }
-.theme-student .accent-border { @apply border-student-300 }
-.theme-student .accent-bg { @apply bg-student-50 }
-
-.theme-company .accent { @apply text-company-500 }
-.theme-company .bg-accent { @apply bg-gradient-to-r from-company-500 to-company-600 }
-.theme-company .accent-border { @apply border-company-300 }
-.theme-company .accent-bg { @apply bg-company-50 }
-
-/* Fade and slide animations */
-.animate-fade-in {
-  @apply animate-fadeIn;
+/* Card header */
+.card-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #0f1724;
+}
+.card-subtitle {
+  font-weight: 500;
+  color: rgba(15,23,36,0.6);
+  font-size: 0.95rem;
 }
 
-.animate-slide-up {
-  @apply animate-slideUp;
+/* Project card specific tweaks */
+.project-badge {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: rgba(15,23,36,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* subtle accent chip */
+.chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  background: rgba(16,24,40,0.03);
+  color: var(--color-accent);
+}
+
+/* modal */
+.modal-backdrop {
+  background: rgba(0,0,0,0.48);
+  backdrop-filter: blur(6px);
+}
+.modal-panel {
+  border-radius: 14px;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, #ffffff, rgba(250,250,250,0.98));
+  box-shadow: 0 18px 48px rgba(2,6,23,0.26);
+  animation: fadeSlide 320ms ease;
+}
+
+/* Leaderboard bar */
+.leader-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 12px;
+  transition: background 160ms, transform 160ms;
+}
+.leader-row:hover {
+  background: rgba(16,24,40,0.02);
+  transform: translateY(-2px);
+}
+.leader-avatar {
+  min-width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0,85,255,0.12), rgba(60,60,180,0.08));
+  font-weight: 700;
+  color: #fff;
+}
+.leader-progress {
+  flex: 1;
+  margin-left: 12px;
+  height: 10px;
+  background: rgba(16,24,40,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.leader-progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-highlight));
+  border-radius: 999px;
+  width: var(--leader-fill, 40%);
+  animation: barFill 900ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* Animated subtle fade for page transitions */
+.page-fade {
+  animation: bg-fade 380ms ease both;
+}
+
+/* small responsive tweaks */
+@media (max-width: 768px) {
+  .card-glass { padding: 1rem; border-radius: 12px; }
+  .btn-premium { padding: 9px 14px; }
+  .leader-avatar { min-width: 36px; height: 36px; font-size: 0.85rem; }
 }

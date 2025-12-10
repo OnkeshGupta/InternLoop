@@ -1,17 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+﻿import React from "react"
+import { Link } from "react-router-dom"
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   to?: string
-  variant?: 'primary' | 'ghost'
+  variant?: "primary" | "ghost" | "outline"
 }
 
-export default function Button({ to, variant = 'primary', children, ...rest }: Props) {
-  const base = 'px-4 py-2 rounded-md font-medium transition'
+export default function Button({ to, variant = "primary", children, ...rest }: Props) {
+  const base = "inline-flex items-center justify-center gap-2 font-medium transition"
   const styles =
-    variant === 'primary'
-      ? 'bg-accent text-white hover:opacity-90 shadow'
-      : 'bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50'
+    variant === "primary" ? "btn-premium" : variant === "outline" ? "btn-outline" : "btn-ghost"
 
   if (to) {
     return (
