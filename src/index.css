@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-gradient-to-br from-slate-50 to-slate-100 text-slate-900 font-sans;
+}
+
+/* Modern button utility classes */
+.btn-primary {
+  @apply px-5 py-2.5 rounded-lg font-semibold bg-gradient-to-r text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply px-5 py-2.5 rounded-lg font-semibold border border-slate-300 text-slate-700 hover:bg-slate-50 transition-all duration-200;
+}
+
+.btn-ghost {
+  @apply px-5 py-2.5 rounded-lg font-medium text-slate-700 hover:bg-slate-200 transition-all duration-200;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-card-hover hover:scale-105;
+}
+
+/* Theme accents */
+.theme-student .accent { @apply text-student-500 }
+.theme-student .bg-accent { @apply bg-gradient-to-r from-student-500 to-student-600 }
+.theme-student .accent-border { @apply border-student-300 }
+.theme-student .accent-bg { @apply bg-student-50 }
+
+.theme-company .accent { @apply text-company-500 }
+.theme-company .bg-accent { @apply bg-gradient-to-r from-company-500 to-company-600 }
+.theme-company .accent-border { @apply border-company-300 }
+.theme-company .accent-bg { @apply bg-company-50 }
+
+/* Fade and slide animations */
+.animate-fade-in {
+  @apply animate-fadeIn;
+}
+
+.animate-slide-up {
+  @apply animate-slideUp;
+}
